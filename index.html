@@ -1,23 +1,140 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-
-<style type="text/css">
 	
-	#miles{
-		width: 100px;
-		height: 100px;
-		background-color:rgb(100,0,0);
+	<style type="text/css">
+		
+		#panel{
+			position: fixed;
+			left: 20%;
+			width: 300px;
+			height: 700px;
+			background-color: #cd7f32;
+			border: 10px solid brown;
+			z-index: 1; 
 
-	}
+		}
+		.button{
+			width:100px;
+			height: 75px;
+			border-radius: 50%;
+			background-color: rgb(80,80,80);
+			color: white;
+			text-align: center;
+			padding-top: 25px;
+			font-size: 50px;
+		}
 
-</style>
+		section{
+			width: 100%;
+			height: 800px;
+			/*background-color: blue;*/
+			/*background-image: url(testImage.png);*/
+			position: absolute;
+			z-index: 0;
+			border: dotted;
+		}
 
+		.bookmark{
+			color: white;
+		}
+
+		.bookmark:hover{
+			color: yellow;
+		}
+
+		.linkBox{
+			width: 200px;
+			height: 150px;
+			background-color: purple;
+			font-size: 50px;
+		}
+		#aboutMe{
+			top: 0px;
+			background-color: blue; 
+		}
+
+		#journal{
+			top: 800px;
+			background-color: white;
+		}
+
+		#projects{
+			top: 1600px;
+			background-color: green;
+		}
+		
+		/*#b1:hover{
+			color: yellow;
+			About Me
+		}
+		#b2:hover{
+			color: yellow;
+			About Me
+		}
+		#b3:hover{
+			color: yellow;
+			About Me
+		}*/
+
+	</style>
 </head>
 
 <body>
-<div id="miles">
 	
-</div>
+	<div id="panel">
+		
+		<center>
+			
+		<div id = "b1" class = "button">
+			<a class="bookmark" href="#aboutMe">1</a>
+		</div>
+		
+		<br>
+
+		<div id = "b2" class = "button">
+			<a class="bookmark" href="#journal">2</a>
+		</div>
+		
+		<br>
+
+		<div id = "b3" class = "button">
+			<a class="bookmark" href="#projects">3</a>
+		</div>
+
+		</center>
+
+	</div>
+
+	<section id = journal>
+		<center>
+			<div class = "linkBox">
+			<a href="journal.html">
+				Journal
+			</a>
+		</div>
+		</center>
+	</section>
+
+	<section id = projects>
+		<center>
+			<div class = "linkBox">
+			<a href="projects.html">
+				Projects
+			</a>
+		</div>
+	</center>
+	</section>
+
+	<section id = aboutMe>
+		<center>
+			<div class = "linkBox">
+			<a href="aboutMe.html">
+				About Me
+			</a>
+		</div>
+		</center>
+	</section>
 </body>
 </html>
