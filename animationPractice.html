@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		
+		#ground{
+			height: 30px;
+			width: 100%;
+			background-color: gray;
+			position: absolute;
+			top: 600px;
+		}
+
+		#ball{
+			height: 100px;
+			width: 100px;
+			border-radius: 50%;
+			background-color: red;
+			position: relative;
+
+			animation-name: bounce;
+			animation-duration: 1.125s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes bounce{
+			0% {top:0px; left: 0px;}
+			6% {top:25px; left: 50px;}
+			13% {top:50px; left: 70.7px;}
+			20% {top:100px; left: 100px;}
+			27.5% {top:200px; left: 141.4px;}
+			35% {top:300px; left: 173.2px;}
+			40% {top:400px; left: 200px;}
+			45% {top:500px; left: 223.6px;}
+
+			51% {top:450px; left: 236.4px;}
+			54% {top:400px; left: 248.8px;}
+			63% {top:350px; left: 264.7px;}
+			68% {top:325px; left: 274.2px;}
+			73% {top:300px; left: 285.4px;}
+			78% {top:275px; left: 300.0px;}
+			83% {top:262.5px; left: 310.4px;}
+			86% {top:256.25px; left: 317.7px;}
+			90% {top:250px; left: 335.4px;}
+			93% {top:256.25px; left: 353.1px;}
+			97% {top:262.5px; left: 360.4px;}
+			100% {top:275px; left: 370.8px;}
+		}
+
+			0% {top:0px; left: 0px;}
+			10% {top:25px; left: 50px;}
+			17.5% {top:50px; left: 70.7px;}
+			25% {top:100px; left: 100px;}
+			37.5% {top:200px; left: 141.4px;}
+			42.5% {top:300px; left: 173.2px;}
+			46% {top:400px; left: 200px;}
+			50% {top:500px; left: 223.6px;}
+
+			51% {top:450px; left: 236.4px;}
+			54% {top:400px; left: 248.8px;}
+			63% {top:350px; left: 264.7px;}
+			68% {top:325px; left: 274.2px;}
+			73% {top:300px; left: 285.4px;}
+			78% {top:275px; left: 300.0px;}
+			83% {top:262.5px; left: 310.4px;}
+			86% {top:256.25px; left: 317.7px;}
+			90% {top:250px; left: 335.4px;}
+			93% {top:256.25px; left: 353.1px;}
+			97% {top:262.5px; left: 360.4px;}
+			100% {top:275px; left: 370.8px;}
+			
+			80% {top:300px; left: 385.4px;}
+			82.5% {top:325px; left: 396.6px;}
+			85% {top:350px; left: 406.1px;}
+			90% {top:400px; left: 422.0px;}
+			95% {top:450px; left: 435.4px;}
+			100% {top:500px; left: 447.2px;}
+
+
+	</style>
+
+</head>
+<body>
+
+	<style type="text/css">
+		body { margin:0px; padding:0px; }
+	</style>
+
+<div id = "ball"></div>
+<div id = "ground"></div>
+
+</body>
+</html>
