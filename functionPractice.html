@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style type="text/css">
+		
+		.turkeyStyle{
+			width: 200px;
+			height: 200px;
+			background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDnbI0OtbDwDOQYaqPL4yvrw0jgNWiULDe1w&usqp=CAU);
+			background-size: contain;
+			background-repeat: no-repeat;
+			color: red;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<script type="text/javascript">
+		
+		function makeTurkey(){
+
+			var turkey = document.createElement("div");
+			document.body.appendChild(turkey);
+			turkey.classList.add("turkeyStyle");
+			turkey.innerText = 
+			"Thanksgiving is almost here!";
+		}
+		
+		makeTurkey();
+		setInterval(makeTurkey, 5000);
+
+	</script>
+
+</body>
+</html>

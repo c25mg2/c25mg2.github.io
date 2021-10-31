@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<style type="text/css">
-		
 
 		#background{
 			width: 100%;
@@ -13,15 +13,18 @@
 
 		}
 
-		#heading{
-			width: 75%;
-			height: 100px;
+		#title{
+			width: 600px;
+			height: auto;
+			margin: auto;
 			background-color: darkblue;
 			font-size: 90px;
 			color: white;
+			text-align: center;
 			z-index: 1;
 		}
-		.entry{
+
+		.entryBox{
 			width: 100%;
 			height: auto;
 			border-style: ridge;
@@ -30,39 +33,71 @@
 			padding-bottom: 10px;
 			background-color: rgb(177, 156, 217);
 			font-size: 20px;
+			text-align: center;
 			z-index: 0;
 		}
 
-		.date{
-			width: 20%;
+		.dateBox{
+			width: 100px;
 			height: auto;
-			height: auto;
+			margin: auto;
 			background-color: rgb(200, 180, 217);
+			text-align: center;
 			z-index: 2; 
 		}
 
-		.dBreak{
+		.break{
 			height: 10px;
 		}
 		
 		html,body {padding:0; margin:0;};
 
 	</style>
+
 </head>
 <body>
-	<div id = "background"></div>
-	<center>
-		<div id = "heading">Projects</div>
-		
-		<br>
 
-		<div class = "entry">
-			<div class = "date">10/24/21</div>
-			<div class = "dBreak"></div>
-			<a href="animationPractice.html">Animation Practice</a>
-		</div>
-	</center>
+	<script type="text/javascript">
+		
+		function makeEntry(d, n, fN){	
+			
+			var eB = document.createElement("div");
+			var dB = document.createElement("div");
+			var eBr = document.createElement("div");
+			var dBr = document.createElement("div");
+			var l = document.createElement("a")
+
+			eB.classList.add("entryBox");
+			dB.classList.add("dateBox");
+			eBr.classList.add("break");
+			dBr.classList.add("break");
+			
+			dB.innerText = d;
+			l.innerHTML = n.link(fN);
+
+			document.body.appendChild(eB);
+			document.body.appendChild(eBr);
+			eB.appendChild(dB);
+			eB.appendChild(dBr);
+			eB.appendChild(l);
+		}
+
+	</script>
+
+
+	<div id = "background"></div>
+
+	<div id = "title">Projects</div>
+		
+	<br>
 	
-	
+	<script type="text/javascript">
+
+		makeEntry("10/31/21", "Function Practice", "functionPractice.html")
+
+		makeEntry("10/24/21", "Animation Practice", "animationPractice.html")
+
+		</script>
+		
 </body>
 </html>

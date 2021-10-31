@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 	<style type="text/css">
 		
-
 		#background{
 			width: 100%;
 			height: 100%;
@@ -13,15 +13,18 @@
 
 		}
 
-		#heading{
-			width: 75%;
-			height: 100px;
+		#title{
+			width: 600px;
+			height: auto;
+			margin: auto;
 			background-color: darkblue;
 			font-size: 90px;
 			color: white;
+			text-align: center;
 			z-index: 1;
 		}
-		.entry{
+
+		.entryBox{
 			width: 100%;
 			height: auto;
 			border-style: ridge;
@@ -30,56 +33,74 @@
 			padding-bottom: 10px;
 			background-color: rgb(177, 156, 217);
 			font-size: 20px;
+			text-align: center;
 			z-index: 0;
 		}
 
-		.date{
-			width: 20%;
+		.dateBox{
+			width: 100px;
 			height: auto;
-			height: auto;
+			margin: auto;
 			background-color: rgb(200, 180, 217);
+			text-align: center;
 			z-index: 2; 
 		}
 
-		.dBreak{
+		.break{
 			height: 10px;
 		}
 		
 		html,body {padding:0; margin:0;};
 
 	</style>
+
 </head>
 <body>
-	<div id = "background"></div>
-	<center>
-		<div id = "heading">Journal</div>
+
+	<script type="text/javascript">
 		
-		<br>
+		function makeEntry(d, t){	
+			
+			var eB = document.createElement("div");
+			var dB = document.createElement("div");
+			var eBr = document.createElement("div");
+			var dBr = document.createElement("div");
+			var text = document.createTextNode(t);
+				
+			eB.classList.add("entryBox");
+			dB.classList.add("dateBox");
+			eBr.classList.add("break");
+			dBr.classList.add("break");
+			
+			dB.innerText = d;
 
-		<div class = "entry">
-			<div class = "date">10/24/21</div>
-			<div class = "dBreak"></div>
-			I learned about keyframe animation, which I think is really cool but not very practical. It was pretty frustrating to write so much code to make the animation smooth. I linked that to my projects page. Now I know how to make the elevator door for my website as well.
-		</div>
+			document.body.appendChild(eB);
+			document.body.appendChild(eBr);
+			eB.appendChild(dB);
+			eB.appendChild(dBr);
+			eB.appendChild(text);	
+		}
 
-		<br>
+	</script>
 
-		<div class = "entry">
-			<div class = "date">10/12/21</div>
-			<div class = "dBreak"></div>
-			I'm starting really get the hang of the syntax of html and css. It is starting to feel natural which is really satisfying. I also have an idea for by digital present. I think I will make a Christmas card for my brother. I am starting to look into css animation on YouTube, so I can further work on my website when I finish the drawings.
-		</div>
 
-		<br>
+	<div id = "background"></div>
 
-		<div class = "entry">
-			<div class = "date">10/4/21</div>
-			<div class = "dBreak"></div>
-			I’ve learned some basics about html and css and started to make my website. I hope to learn how to add some basic animation in javascript, and I am excited to draw the background elevator of my website. And because of that, I want to know how to use an image that is not on the internet.
-		</div>
+	<div id = "title">Journal</div>
+		
+	<br>
 
-	</center>
-	
-	
+	<script type="text/javascript">
+
+		makeEntry("10/31/21", "A varible is an object that holds information so we can call on it in an easier, organized, and compact way. A function is a set of instructions that we can similarly invoke in an easier, organized, and compact way. In order to invoke a function one must write the 'nameOfFunction();' with the necessary arguments. Some words I've learned in javascript so far are function, var, document.createElement(), document.createTextNode(), classList.add(), setInterval(), and appendChild(). In my codesketch, a function is used to display an image and text every 5 seconds. I remade my journal and projects pages using functions, which was more interesting and difficult.");
+
+		makeEntry("10/24/21", "I learned about keyframe animation, which I think is really cool but not very practical. It was pretty frustrating to write so much code to make the animation smooth. I linked that to my projects page. Now I know how to make the elevator door for my website as well.");
+			
+		makeEntry("10/12/21", "I'm starting really get the hang of the syntax of html and css. It is starting to feel natural which is really satisfying. I also have an idea for by digital present. I think I will make a Christmas card for my brother. I am starting to look into css animation on YouTube, so I can further work on my website when I finish the drawings.");
+			
+		makeEntry("10/4/21", "I’ve learned some basics about html and css and started to make my website. I hope to learn how to add some basic animation in javascript, and I am excited to draw the background elevator of my website. And because of that, I want to know how to use an image that is not on the internet.");
+		
+		</script>
+		
 </body>
 </html>
