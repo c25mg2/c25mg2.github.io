@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+<body>
+	<script type="text/javascript">
+		
+		var num1 = 0;
+		var num2 = 1;
+		var x = 1;
+		var sum = 0;
+		
+		function add(){
+			
+			while (true){
+				num1 = num2;
+				num2 = x;
+				x = num1 + num2;
+				
+				if (x % 2 == 0 && x < 4000000){
+					sum = sum + x;
+				} else if (x >= 4000000){
+					break;
+				}
+			}
+
+			console.log(sum);
+		}
+		
+		add();
+
+	</script>
+</body>
+</html>

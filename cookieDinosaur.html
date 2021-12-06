@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var grid = document.createElement("div");
+
+grid.style.display = "grid";
+
+function makeCookie (){
+	
+	var cookie = document.createElement("div");
+	document.grid.appendChild(cookie);
+	
+	cookie.style.height = "200px";
+	cookie.style.width = "200px";
+	cookie.style.backgroundImage = "url(./images/cookie.jpg)";
+	cookie.style.backgroundSize = "contain";
+	cookie.style.backgroundRepeat = "no-repeat";
+	
+	cookie.addEventListener("click", function(){cookie.style.backgroundImage = "url(./images/dinosaur.jpg)"});
+}	
+
+makeCookie();
+setInterval(makeCookie, 3000);
+
+
+</script>
+
+</body>
+</html>

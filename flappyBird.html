@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<style type="text/css">
+ 		#birdStyle{
+ 			height: 100px;
+ 			width: 100px;
+ 			border-radius: 50%;
+ 			background-color: red;
+ 		}
+
+ 	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		// var bird = document.createElement("div");
+		// document.body.appendChild(bird);
+		// bird.id = "birdStyle";
+
+		function key (k){
+				var keyID = k.keyCode;
+				console.log(keyID);
+				if (keyID == 87 || keyID == 38){
+					//w
+					console.log("w");
+				} else if (keyID == 83 || keyID == 40){
+					//s
+					console.log("s");
+				} 
+			}
+
+		document.addEventListener("onKeyDown", key)
+		
+	</script>
+</body>
+</html>

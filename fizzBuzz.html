@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+</head>
+<body>
+
+	<script type="text/javascript">
+		function count(){
+			
+			var b = document.createElement("div");
+			document.body.appendChild(b);
+			b.style.fontSize = "30px";
+			
+			for(let i = 1; i <= 100; i++){
+
+				if(i % 15 === 0){
+					b.innerText = b.innerText + "\tFizzBuzz";
+				} else if(i % 3 === 0){
+					b.innerText = b.innerText + "\tFizz";
+				} else if(i % 5 === 0){
+					b.innerText = b.innerText + "\tBuzz"; 
+				} else {
+					b.innerText = b.innerText + "\t" + i;
+				}
+
+			}
+
+		}
+		count();
+	</script>
+
+</body>
+</html>

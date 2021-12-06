@@ -10,7 +10,6 @@
 			background-color: lightblue;
 			position: fixed;
 			z-index: -1;
-
 		}
 
 		#title{
@@ -21,7 +20,15 @@
 			font-size: 90px;
 			color: white;
 			text-align: center;
-			z-index: 1;
+		}
+
+		#backButton{
+			width: 50px;
+			height: 50px;
+			background-image: url("./images/cookie.jpg");
+			background-size: contain;
+			background-repeat: no-repeat;
+			
 		}
 
 		.entryBox{
@@ -34,7 +41,6 @@
 			background-color: rgb(177, 156, 217);
 			font-size: 20px;
 			text-align: center;
-			z-index: 0;
 		}
 
 		.dateBox{
@@ -43,7 +49,6 @@
 			margin: auto;
 			background-color: rgb(200, 180, 217);
 			text-align: center;
-			z-index: 2; 
 		}
 
 		.break{
@@ -59,7 +64,7 @@
 
 	<script type="text/javascript">
 		
-		function makeEntry(d, t){	
+		function entry(d, t){	
 			
 			var eB = document.createElement("div");
 			var dB = document.createElement("div");
@@ -86,19 +91,29 @@
 
 	<div id = "background"></div>
 
+	<a href="index.html">
+		<div id = "backButton"></div>
+	</a>
+
 	<div id = "title">Journal</div>
 		
 	<br>
 
 	<script type="text/javascript">
 
-		makeEntry("10/31/21", "A varible is an object that holds information so we can call on it in an easier, organized, and compact way. A function is a set of instructions that we can similarly invoke in an easier, organized, and compact way. In order to invoke a function one must write the 'nameOfFunction();' with the necessary arguments. Some words I've learned in javascript so far are function, var, document.createElement(), document.createTextNode(), classList.add(), setInterval(), and appendChild(). In my codesketch, a function is used to display an image and text every 5 seconds. I remade my journal and projects pages using functions, which was more interesting and difficult.");
+		entry("12/6/21","I continued to work on my drawing for my website background and I am almost finished. I also started work on a Flappy Bird Game. I have gotten stuck on indentifying which key is pushed. I will have to go in smaller steps to help debug.")
 
-		makeEntry("10/24/21", "I learned about keyframe animation, which I think is really cool but not very practical. It was pretty frustrating to write so much code to make the animation smooth. I linked that to my projects page. Now I know how to make the elevator door for my website as well.");
+		entry("11/15/21", "After reading the article on color, I learned about the RGB and CMYK color systems. I had always known about RGB, but I never understood why there was green and not yellow because in art/pigments, yellow is a primary color, not green. But now I understand that RGB refers to light and not pigments. I also did not really know the difference between RGB and CMYK, but now I know that RBG is additive while CMYK is subtractive. In the Javascript article there was not much that I did not already know, but it was a nice refresher.");
+
+		entry("11/10/21", "To debug code, a good first step is to look at the console for errors. Look at the content of the error and the line number to locate where the error is taking place. This will most things. If there are no syntax errors, then a next good step is to look at the part of code that is not doing what you intended. Look at parentheses, curly brackets, and misplaced variable names.");
+
+		entry("10/31/21", "A varible is an object that holds information so we can call on it in an easier, organized, and compact way. A function is a set of instructions that we can similarly invoke in an easier, organized, and compact way. In order to invoke a function one must write the 'nameOfFunction();' with the necessary arguments. Some words I've learned in javascript so far are function, var, document.createElement(), document.createTextNode(), classList.add(), setInterval(), and appendChild(). In my codesketch a function is used to display an image and text every 5 seconds. I remade my journal and projects pages using functions, which was more interesting and difficult.");
+
+		entry("10/24/21", "I learned about keyframe animation, which I think is really cool but not very practical. It was pretty frustrating to write so much code to make the animation smooth. I linked that to my projects page. Now I know how to make the elevator door for my website as well.");
 			
-		makeEntry("10/12/21", "I'm starting really get the hang of the syntax of html and css. It is starting to feel natural which is really satisfying. I also have an idea for by digital present. I think I will make a Christmas card for my brother. I am starting to look into css animation on YouTube, so I can further work on my website when I finish the drawings.");
+		entry("10/12/21", "I'm starting really get the hang of the syntax of html and css. It is starting to feel natural which is really satisfying. I also have an idea for by digital present. I think I will make a Christmas card for my brother. I am starting to look into css animation on YouTube, so I can further work on my website when I finish the drawings.");
 			
-		makeEntry("10/4/21", "I’ve learned some basics about html and css and started to make my website. I hope to learn how to add some basic animation in javascript, and I am excited to draw the background elevator of my website. And because of that, I want to know how to use an image that is not on the internet.");
+		entry("10/4/21", "I’ve learned some basics about html and css and started to make my website. I hope to learn how to add some basic animation in javascript, and I am excited to draw the background elevator of my website. And because of that, I want to know how to use an image that is not on the internet.");
 		
 		</script>
 		
