@@ -7,29 +7,37 @@
  			width: 100px;
  			border-radius: 50%;
  			background-color: red;
+ 			position: absolute;
+ 			bottom: 100px;
  		}
 
  	</style>
 </head>
 <body>
 	<script type="text/javascript">
-		// var bird = document.createElement("div");
-		// document.body.appendChild(bird);
-		// bird.id = "birdStyle";
+		
+		var bird = document.createElement("div");
+		document.body.appendChild(bird);
+		bird.id = "birdStyle";
+		
 
-		function key (k){
-				var keyID = k.keyCode;
-				console.log(keyID);
-				if (keyID == 87 || keyID == 38){
-					//w
-					console.log("w");
-				} else if (keyID == 83 || keyID == 40){
-					//s
-					console.log("s");
-				} 
-			}
+		document.addEventListener("keydown", function (e){
+				var k = e.keyCode;
+				var pos = 0; 
+				console.log(e);
+				if (k === 87 || k == 38){
+					t = setInterval (move, 5);
+				function move(){
+					if (pos === 350){
+						clearInterval(t);
+					} else {
+						pos++;
+						bird.style.bottom = pos + "px";
+					}
+				}
+					}
 
-		document.addEventListener("onKeyDown", key)
+			})
 		
 	</script>
 </body>
