@@ -2,8 +2,102 @@
 <html>
 <head>
 	
+	<style type="text/css">
+		
+		#zone{
+			width: 173.4693878px;
+			height: 233.1632653px;
+			border-style: solid;
+			border-color: black;
+			border-width: 2px;
+			/*background-color: black;*/
+			position:relative;
+			top: 300px;
+			left: 600px;
+		}
+
+		.ball{
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: red;
+			position: relative;
+			left: 168.4693878px;
+			top: 228.1632653px;
+			
+		}
+
+		/*#calcDiv{
+			width: 100%;
+			height: 100%;
+		}*/
+
+	</style>
+
 </head>
 <body>
+
+	<script type="text/javascript">
+
+		var z = document.createElement("div");
+		document.body.appendChild(z);
+		z.id = "zone";
+
+		var b = document.createElement("div");
+		z.appendChild(b);
+		b.classList = "ball";
+			
+		var bRect = b.getBoundingClientRect();
+		var zRect = z.getBoundingClientRect();
+
+		var zRectLeft = zRect.left + 2;
+		var zRectRight = zRect.right - 2;
+		var zRectTop = zRect.top + 2;
+		var zRectBottom = zRect.bottom - 2;
+
+		var br = b.clientWidth/2;
+		var bx = bRect.left + br;
+		var by = bRect.top + br;
+		
+		var calRectLeft = zRectLeft - br;
+		var calRectRight = zRectRight + br;
+		var calRectTop = zRectTop - br;
+		var calRectBottom = zRectBottom + br;
+		
+
+		function pointCircle(cx, cy, px, py, r){
+			var d = Math.sqrt((cx-px)**2 + (cy-py)**2);
+
+			if (d <= r){
+				return true;
+			}
+
+			return false;
+		}
+
+		function call(){
+			
+			if(bx >= calRectLeft && bx <= calRectRight && by >= calRectTop && by <= calRectBottom){
+				
+				if((bx < zRectLeft || bx > zRectRight) && (by < zRectTop || by > zRectBottom) && !(pointCircle(zRectLeft, zRectTop, bx, by, br) || pointCircle(zRectLeft, zRectBottom, bx, by, br) || pointCircle(zRectRight, zRectTop, bx, by, br)|| pointCircle(zRectRight, zRectBottom, bx, by, br))){
+					
+					return false;
+				}
+				
+				return true;
+				
+				}
+
+				return false;	 
+			}
+	
+		console.log(call());
+
+		function pitch(){
+			
+		}
+
+	</script>
 
 </body>
 </html>

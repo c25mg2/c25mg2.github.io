@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<style type="text/css">
+		
+		#zone{
+			width: 173.4693878px;
+			height: 233.1632653px;
+			border-style: solid;
+			border-color: black;
+			border-width: 2px;
+			/*background-color: black;*/
+			position:relative;
+			top: 300px;
+			left: 600px;
+		}
+
+		#ball{
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: green;
+			position: relative;
+
+			/*left: 200.4693878px;
+			top: 228.1632653px;*/
+			
+		}
+
+		#timingCircle{
+			/*width: 30px;
+			height: 30px;*/
+			border-radius: 50%;
+			background-color: red;
+			position: relative;
+			opacity: .33;
+		}
+
+		/*#calcDiv{
+			width: 100%;
+			height: 100%;
+		}*/
+
+	</style>
+
+</head>
+<body>
+
+	<script type="text/javascript">
+
+		var z = document.createElement("div");
+		document.body.appendChild(z);
+		z.id = "zone";
+
+		var b = document.createElement("div");
+		z.appendChild(b);
+		b.id = "ball";
+
+		var tc = document.createElement("div");
+		b.appendChild(tc);
+		tc.id = "timingCircle";
+
+		var zRect = z.getBoundingClientRect();
+
+		var bRect;
+		var br = b.clientWidth/2;
+		var bx;
+		var by;
+
+		var zRectLeft = zRect.left + 2;
+		var zRectRight = zRect.right - 2;
+		var zRectTop = zRect.top + 2;
+		var zRectBottom = zRect.bottom - 2;
+		
+		var calRectLeft = zRectLeft - br;
+		var calRectRight = zRectRight + br;
+		var calRectTop = zRectTop - br;
+		var calRectBottom = zRectBottom + br;
+
+		var tcr = 40;
+		var initialTCR = tcr;
+
+		var littleLeagueFB = 546.1866335;
+		var thirteenUFB = 543.6323028;
+		var vartisityFB = 490.7572589;
+		var collegeFB = 436.1901495;
+		var mlbFB = 413.6682135;
+		var chapmanFB = 373.5215362;
+		
+
+		function pointCircle(cx, cy, px, py, r){
+			let d = Math.sqrt((cx-px)**2 + (cy-py)**2);
+
+			if (d <= r){
+				
+				return true;
+			}
+
+			return false;
+		}
+
+		function pitchLocation(){
+
+			b.style.left = Math.random() * (z.clientWidth + 100) - 60 - br + "px";
+			b.style.top = Math.random() * (z.clientHeight + 100) - 60 - br + "px";
+			
+			bRect = b.getBoundingClientRect();
+			bx = bRect.left + br;
+			by = bRect.top + br;
+		}
+
+		function call(){
+			
+			pitchLocation();	
+
+			if(bx >= calRectLeft && bx <= calRectRight && by >= calRectTop && by <= calRectBottom){
+				
+				if((bx < zRectLeft || bx > zRectRight) && (by < zRectTop || by > zRectBottom) && !(pointCircle(zRectLeft, zRectTop, bx, by, br) || pointCircle(zRectLeft, zRectBottom, bx, by, br) || pointCircle(zRectRight, zRectTop, bx, by, br)|| pointCircle(zRectRight, zRectBottom, bx, by, br))){
+					
+					return false;
+
+				}
+				
+				return true;
+
+				}
+
+			return false;
+		}
+	
+	 	console.log(call());
+
+		var i = 0;
+		var halfI = 50;
+		var int;
+		// var test = document.createElement("div");
+		// z.appendChild(test);
+		
+		function timing(){
+
+			// document.addEventListener("click", );
+		}
+
+		function makeTC(){
+
+			tc.style.left = br - tcr + "px";
+			tc.style.top = br - tcr + "px";
+
+			tc.style.width = 2 * tcr + "px";
+			tc.style.height = 2 * tcr + "px";
+
+			if(i < halfI - 1){
+				
+				tcr = tcr - initialTCR/(halfI - 1);
+				i++;
+
+			} else if(i == halfI - 1){
+				
+				tcr = 0;
+				i++;
+
+			} else if(i < 2 * (halfI - 1)){
+
+				tcr = tcr + initialTCR/(halfI - 1);
+				i++;
+
+			} else {
+				
+				z.style.borderColor = "black";
+				clearInterval(int);
+				i = 0;
+
+			}
+		}
+
+		function animatePitch(t){
+			
+			// setTimeout(function (){z.style.borderColor = "transparent";}, 2 * t);
+
+			z.style.borderColor = "transparent";
+			makeTC();
+			int = setInterval(makeTC, t/(halfI - 1));
+			
+			// test.style.backgroundColor = "white";
+
+			
+
+			// test.style.width = "300px";
+			// test.style.height = "300px";
+			// test.style.backgroundColor = "yellow";
+			
+			// setTimeout(function(){test.style.backgroundColor = "white"}, t);
+		}
+		
+		animatePitch(littleLeagueFB);
+	
+		
+
+		
+		
+
+		
+		
+
+		// makeTC(100);
+
+		
+		// setTimeout(function(){makeTC(100)}, 3000);
+		// setTimeout(function(){makeTC(10)}, 3000);
+		// setTimeout(function(){makeTC(30)}, 3000);
+		// setTimeout(function(){makeTC(20)}, 3000);
+		// setTimeout(function(){makeTC(10)}, 3000);
+		// setTimeout(function(){makeTC(0)}, 3000);
+
+		// function animatePitch(){
+		// 	for(let i = 100; i > 0; i--){
+		// 			setTimeout( function(){console.log(i)
+		// 				// function (){makeTC(i)}
+
+		// 				, 5000});;
+		// 	}
+		// }
+
+		// animatePitch();
+
+	</script>
+</body>
+</html>
