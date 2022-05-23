@@ -72,8 +72,8 @@
 
 			.button {
 				z-index: 4;
-				height: calc(80 / 849 * 100vh);
-				width: calc(80 / 849 * 100vh);
+				height: calc(70 / 849 * 100vh);
+				width: calc(70 / 849 * 100vh);
 				border-radius: 50%;
 				border-style: solid;
 				border-width: 0.3vh;
@@ -83,31 +83,35 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 				color: white;
-				font-size: calc(13 / 849 * 100vh);
-				line-height: calc(80 / 849 * 100vh);
+				font-size: calc(11 / 849 * 100vh);
+				line-height: calc(70 / 849 * 100vh);
 				text-align: center;
 			}
 
 			.button:hover {
 				color: rgb(255, 232, 103);
 				border-color: rgb(255, 232, 103);
-				font-size: calc(14.5 / 849 * 100vh);
+				font-size: calc(12.5 / 849 * 100vh);
 			}
 
-			#journalButton {
-				top: 15%;
+			#thanksButton {
+				top: 10%;
 			}
 
-			#projectsButton {
-				top: 38.33%;
+			#elevatorButton {
+				top: 30%;
 			}
 
-			#aboutMeButton {
-				top: 61.67%;
+			#baseballButton {
+				top: 50%;
 			}
 
-			#lobbyButton {
-				top: 85%;
+			#animationButton {
+				top: 70%;
+			}
+
+			#introductionButton {
+				top: 90%;
 			}
 
 			#returnEleButton {
@@ -121,6 +125,16 @@
 				/* background-color: rgb(149, 152, 153); */
 				transform: translateY(0.5vh);
 			}
+
+            #elevatorFloor{
+                font-size: 30vh;
+                background-color: rgb(228, 239, 241);
+            }
+
+            #thanksFloor{
+                font-size: 25vh;
+                background-color: rgb(228, 239, 241);
+            }
 
 			.iFrameStyle {
 				width: 100%;
@@ -144,24 +158,31 @@
 		</div>
 
 		<div id="panel">
-			<div class="button" id="journalButton">Journal</div>
-			<div class="button" id="projectsButton">Projects</div>
-			<div class="button" id="aboutMeButton">About Me</div>
-			<div class="button" id="lobbyButton">Lobby</div>
+			<div class="button" id="thanksButton">Thanks</div>
+			<div class="button" id="elevatorButton">Elevator</div>
+			<div class="button" id="baseballButton">Baseball</div>
+			<div class="button" id="animationButton">Animation</div>
+			<div class="button" id="introductionButton">Introduction</div>
 		</div>
 
-		<section id="journalFloor">
-			<iframe src="./journal.html" class="iFrameStyle"></iframe>
+		<section id="thanksFloor"">
+			<center>Thank you for listening! 
+                <br />
+                <a href = "finalProject.html" target="_blank">Final Project</a>
+            </center>
+            </section>
+		<section id="elevatorFloor">
+			<center><a href="index.html" ">Website</a></center>
 		</section>
-		<section id="projectsFloor">
-			<iframe src="./projects.html" class="iFrameStyle"></iframe>
+		<section id="baseballFloor">
+			<iframe src="./pitchSimulatorV2.html" class="iFrameStyle"></iframe>
 		</section>
-		<section id="aboutMeFloor">
-			<iframe src="./aboutMe.html" class="iFrameStyle"></iframe>
+		<section id="animationFloor">
+			<iframe src="./animationPractice.html" class="iFrameStyle"></iframe>
 		</section>
 
-		<section id="lobbyFloor">
-			<iframe src="./welcome.html" class="iFrameStyle"></iframe>
+		<section id="introductionFloor">
+			<iframe src="./finalProjectIntro.html" class="iFrameStyle"></iframe>
 		</section>
 
 		<audio
@@ -176,13 +197,13 @@
 			var door = document.getElementById("door");
 			var doorFrame = document.getElementById("doorFrame");
 			var panel = document.getElementById("panel");
-			var aboutMe = document.getElementById("aboutMe");
-			var journal = document.getElementById("journal");
-			var projects = document.getElementById("projects");
-			var lobbyFloor = document.getElementById("lobbyFloor");
-			var aboutMeFloor = document.getElementById("aboutMeFloor");
-			var projectsFloor = document.getElementById("projectsFloor");
-			var journalFloor = document.getElementById("journalFloor");
+			// var aboutMe = document.getElementById("aboutMe");
+			// var journal = document.getElementById("journal");
+			// var projects = document.getElementById("projects");
+			var introductionFloor = document.getElementById("introductionFloor");
+			var animationFloor = document.getElementById("animationFloor");
+			var baseballFloor = document.getElementById("baseballFloor");
+			var elevatorFloor = document.getElementById("elevatorFloor");
 			var returnEleButton = document.getElementById("returnEleButton");
 
 			var openingDoorSound = document.getElementById("openingDoorSound");
@@ -302,7 +323,7 @@
 			function initialAnimation() {
 				setTimeout(function () {
 					movingSound.play();
-					lobbyFloor.scrollIntoView();
+					introductionFloor.scrollIntoView();
 				}, 1500);
 				setTimeout(openDoor, 1500 + 1500);
 				setTimeout(closeDoor, totalTimeDoor + 1750 + 1500);
@@ -312,10 +333,11 @@
 			initialAnimation();
 
 			setTimeout(function () {
-				activateLink(journalButton, journalFloor);
-				activateLink(projectsButton, projectsFloor);
-				activateLink(aboutMeButton, aboutMeFloor);
-				activateLink(lobbyButton, lobbyFloor);
+				activateLink(introductionButton, introductionFloor);
+				activateLink(animationButton, animationFloor);
+				activateLink(baseballButton, baseballFloor);
+				activateLink(elevatorButton, elevatorFloor);
+				activateLink(thanksButton, thanksFloor);
 				returnEleButton.addEventListener("click", function () {
 					elevatorReturn();
 				});
