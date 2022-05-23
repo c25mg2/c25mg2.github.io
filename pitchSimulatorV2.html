@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<style type="text/css">
+			body {
+				margin: 0;
+				box-sizing: border-box;
+			}
+			#zone {
+				border-style: solid;
+				border-color: black;
+				border-width: 2px;
+				/*background-color: black;*/
+				position: absolute;
+				left: 50%;
+				top: 60%;
+				transform: translate(-50%, -50%);
+			}
+
+			#ball {
+				border-radius: 50%;
+				background-color: green;
+				position: relative;
+				transform: translate(-50%, -50%);
+
+				/*left: 200.4693878px;
+        top: 228.1632653px;*/
+			}
+
+			#timingCircle {
+				border-radius: 50%;
+				background-color: grey;
+				position: relative;
+				opacity: 0.33;
+				transform: translate(-50%, -50%);
+			}
+
+			.button {
+				width: 100px;
+				height: 40px;
+				background-color: green;
+				position: relative;
+				border-radius: 10px;
+				border: none;
+				cursor: pointer;
+				margin: 15px;
+				transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+			.button:hover {
+				background-color: rgb(52, 158, 52);
+				transform: scale(1.1);
+			}
+
+			#buttonBox {
+				width: 100%;
+				height: 80px;
+				background-color: goldenrod;
+				opacity: 50%;
+				margin: 0;
+			}
+			.hide {
+				display: none;
+			}
+		</style>
+		<title>Make a pitch bitch</title>
+	</head>
+	<body>
+		<div id="buttonBox">
+			<center>
+				<button id="littleLeagueFbB" class="button">Little League</button>
+				<button id="thirteenUFbB" class="button">13U</button>
+				<button id="varsityFbB" class="button">Varsity</button>
+				<button id="collegeFbB" class="button">College</button>
+				<button id="mlbFbB" class="button">MLB</button>
+				<button id="chapmanFbB" class="button">Chapman</button>
+			</center>
+		</div>
+		<div id="zone">
+			<div id="ball"></div>
+			<div id="timingCircle"></div>
+		</div>
+
+		<script>
+			var zone = document.getElementById("zone");
+			var ball = document.getElementById("ball");
+			// declare variables
+			var initialBR = 10;
+			var currentBR;
+			var endingBR = 15;
+
+			var initialTCR = 50;
+			var currentTCR;
+			var endingTCR = 20;
+
+			var zoneWidth = 173.4693878;
+			var zoneHeight = 233.1632653;
+
+			var initialPos = [zoneWidth / 2, 30 - 1];
+			var currentPos = [];
+			var endPos = [];
+
+			var littleLeagueFbT = 546.1866335;
+			var thirteenUFbT = 543.6323028;
+			var varsityFbT = 490.7572589;
+			var collegeFbT = 436.1901495;
+			var mlbFbT = 413.6682135;
+			var chapmanFbT = 373.5215362;
+			var iteration = 100;
+
+			var zone = document.getElementById("zone");
+			zone.style.width = zoneWidth + "px";
+			zone.style.height = zoneHeight + "px";
+
+			var timingCircle = document.getElementById("timingCircle");
+			timingCircle;
+			var zCoor = zone.getBoundingClientRect();
+			// var zLeft = zCoor.left - br - 2;
+			// var zRight = zCoor.right + br + 2;
+			// var zTop = zCoor.top - br - 2;
+			// var zBot = zCoor.bottom + br + 2;
+
+			function setBallSize(r) {
+				ball.style.width = 2 * r + "px";
+				ball.style.height = 2 * r + "px";
+			}
+
+			function setTimingCircleSize(r) {
+				timingCircle.style.width = 2 * r + "px";
+				timingCircle.style.height = 2 * r + "px";
+			}
+
+			function setBallPos(x, y) {
+				currentPos[0] = x;
+				currentPos[1] = y;
+				// x -= currentBR;
+				// y -= currentBR;
+
+				ball.style.left = x + "px";
+				ball.style.top = y + "px";
+			}
+
+			function createRandEndPos() {
+				endPos[0] = Math.random() * (zoneWidth + 80) - 40;
+				endPos[1] = Math.random() * (zoneHeight + 80) - 40;
+			}
+
+			function resetBall() {
+				setBallSize(initialBR);
+				setBallPos(initialPos[0], initialPos[1]);
+			}
+
+			// function call() {
+			// 	if (
+			// 		bx >= calRectLeft &&
+			// 		bx <= calRectRight &&
+			// 		by >= calRectTop &&
+			// 		by <= calRectBottom
+			// 	) {
+			// 		if (
+			// 			(bx < zRectLeft || bx > zRectRight) &&
+			// 			(by < zRectTop || by > zRectBottom) &&
+			// 			!(
+			// 				pointCircle(zRectLeft, zRectTop, bx, by, br) ||
+			// 				pointCircle(zRectLeft, zRectBottom, bx, by, br) ||
+			// 				pointCircle(zRectRight, zRectTop, bx, by, br) ||
+			// 				pointCircle(zRectRight, zRectBottom, bx, by, br)
+			// 			)
+			// 		) {
+			// 			return false;
+			// 		}
+
+			// 		return true;
+			// 	}
+
+			// 	return false;
+			// }
+
+			function pitch(t) {
+				// console.log("pitch");
+				resetBall();
+				createRandEndPos();
+
+				var xMove = (endPos[0] - initialPos[0]) / iteration;
+				var yMove = (endPos[1] - initialPos[1]) / iteration;
+
+				var changeBR = (endingBR - initialBR) / iteration;
+				var changeTCR = (endingTCR - initialTCR) / iteration;
+
+				currentPos[0] = initialPos[0];
+				currentPos[1] = initialPos[1];
+				currentBR = initialBR;
+				currentTCR = initialTCR;
+				// console.log(initialPos[0], initialPos[1], currentPos[0], currentPos[1]);
+
+				setBallPos(currentPos[0], currentPos[1]);
+				timingCircle.style.left = endPos[0] + "px";
+				timingCircle.style.top = endPos[1] + "px";
+				
+				console.log("endPOS", endPos[0], endPos[1]);
+				console.log("tC Coor", timingCircle.style.left, timingCircle.style.top);
+				let i = 0;
+				function moveBall() {
+					// zone.style.borderColor = "white";
+					ball.style.backgroundColor = "green";
+					currentPos[0] += xMove;
+					currentPos[1] += yMove;
+					setBallPos(currentPos[0], currentPos[1]);
+					// console.log(xMove, yMove, currentPos[0], currentPos[1]);
+					i++;
+					currentBR += changeBR;
+					currentTCR += changeTCR;
+					setBallSize(currentBR);
+					setTimingCircleSize(currentTCR);
+
+					if (i == iteration) {
+						clearInterval(animatePitch);
+						ball.style.backgroundColor = "red";
+						zone.style.borderColor = "black";
+					}
+				}
+
+				var animatePitch = setInterval(moveBall, t / iteration);
+
+				console.log("ball coor", ball.style.left, ball.style.top);
+
+				console.log(
+					"currentPOS",
+					currentPos[0] - endingBR,
+					currentPos[1] - endingBR
+				);
+			}
+
+			function activateButton(levelName, levelTime) {
+				var level = document.getElementById(levelName);
+				level.addEventListener("click", function () {
+					// console.log("button");
+					setTimeout(pitch(levelTime), 5000);
+					setBallPos(endPos[0], endPos[1]);
+				});
+			}
+
+			activateButton("varsityFbB", varsityFbT);
+			activateButton("collegeFbB", collegeFbT);
+			activateButton("mlbFbB", mlbFbT);
+			activateButton("chapmanFbB", chapmanFbT);
+			// pitch();
+
+			// function pointCircle(px, py, cx, cy, r) {
+			// 	let d = Math.sqrt((cx - px) ** 2 + (cy - py) ** 2);
+			// 	if (d <= r) {
+			// 		return true;
+			// 	}
+
+			// 	return false;
+			// }
+
+			// function call (){
+
+			// }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+
+		<style>
+			.target {
+				width: 80px;
+				height: 80px;
+				background-color: orange;
+				border-radius: 50%;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+
+        <p>Score:</p><input id = "in"> </input>
+
+		<audio id="s" src="./sounds/mixkit-soap-bubble-sound-2925.wav"></audio>
+		<script>
+			var score = document.getElementById("in");
+            var sound = document.getElementById("s");
+            var i = 0;
+			function createTarget() {
+				var target = document.createElement("div");
+				document.body.appendChild(target);
+				target.classList.add("target");
+
+				function changePos() {
+					target.style.left = Math.random() * 800 + 100 + "px";
+					target.style.top = Math.random() * 600 + 100 + "px";
+					console.log(target.style.left, target.style.top);
+				}
+
+				target.addEventListener("click", function () {
+					target.remove();
+                    sound.play();
+                    i++;
+                    score.value = i;
+				});
+                changePos();
+				setInterval(changePos, 1000);
+			}
+
+			setInterval(createTarget, 750);
+
+			// setInterval(function () {
+			// 	createTarget();
+			// }, 1000);
+		</script>
+	</body>
+</html>

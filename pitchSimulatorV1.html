@@ -1,261 +1,318 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<style type="text/css">
-		
-		#zone{
-			width: 173.4693878px;
-			height: 233.1632653px;
-			border-style: solid;
-			border-color: black;
-			border-width: 2px;
-			/*background-color: black;*/
-			position:relative;
-			top: 300px;
-			left: 600px;
-		}
+	<head>
+		<style type="text/css">
+			body {
+				margin: 0;
+				box-sizing: border-box;
+			}
+			#zone {
+				width: 173.4693878px;
+				height: 233.1632653px;
+				border-style: solid;
+				border-color: black;
+				border-width: 2px;
+				/*background-color: black;*/
+				position: absolute;
+				left: 35%;
+				top: 35%;
+			}
 
-		#ball{
-			width: 30px;
-			height: 30px;
-			border-radius: 50%;
-			background-color: green;
-			position: relative;
+			#ball {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				background-color: green;
+				position: relative;
 
-			/*left: 200.4693878px;
+				/*left: 200.4693878px;
 			top: 228.1632653px;*/
-			
-		}
+			}
 
-		#timingCircle{
-			/*width: 30px;
+			#timingCircle {
+				/*width: 30px;
 			height: 30px;*/
-			border-radius: 50%;
-			background-color: red;
-			position: relative;
-			opacity: .33;
-		}
-
-		/*#calcDiv{
-			width: 100%;
-			height: 100%;
-		}*/
-
-	</style>
-
-</head>
-<body>
-
-	<script type="text/javascript">
-
-		var z = document.createElement("div");
-		document.body.appendChild(z);
-		z.id = "zone";
-
-		var b = document.createElement("div");
-		z.appendChild(b);
-		b.id = "ball";
-
-		var tc = document.createElement("div");
-		b.appendChild(tc);
-		tc.id = "timingCircle";
-
-		var zRect = z.getBoundingClientRect();
-
-		var bRect;
-		var br = b.clientWidth/2;
-		var bx;
-		var by;
-
-		var zRectLeft = zRect.left + 2;
-		var zRectRight = zRect.right - 2;
-		var zRectTop = zRect.top + 2;
-		var zRectBottom = zRect.bottom - 2;
-		
-		var calRectLeft = zRectLeft - br;
-		var calRectRight = zRectRight + br;
-		var calRectTop = zRectTop - br;
-		var calRectBottom = zRectBottom + br;
-
-		var tcr = 40;
-		var initialTCR = tcr;
-
-		var littleLeagueFB = 546.1866335;
-		var thirteenUFB = 543.6323028;
-		var vartisityFB = 490.7572589;
-		var collegeFB = 436.1901495;
-		var mlbFB = 413.6682135;
-		var chapmanFB = 373.5215362;
-
-		var barrel = 28.06122449;
-		var timingNum;	
-
-		function pointCircle(cx, cy, px, py, r){
-			let d = Math.sqrt((cx-px)**2 + (cy-py)**2);
-
-			if (d <= r){
-				
-				return true;
+				border-radius: 50%;
+				background-color: red;
+				position: relative;
+				opacity: 0.33;
 			}
 
-			return false;
-		}
+			.button {
+				width: 100px;
+				height: 40px;
+				background-color: green;
+				position: relative;
+				border-radius: 10px;
+				border: none;
+				margin: 15px;
+			}
 
-		function pitchLocation(){
+			#buttonBox {
+				width: 100%;
+				height: 80px;
+				background-color: goldenrod;
+				opacity: 50%;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="buttonBox">
+			<center>
+				<button id="littleLeagueFbB" class="button">Little League</button>
+				<button id="thirteenUFbB" class="button">13U</button>
+				<button id="varsityFbB" class="button">Varsity</button>
+				<button id="collegeFbB" class="button">College</button>
+				<button id="mlbFbB" class="button">MLB</button>
+				<button id="chapmanFbB" class="button">Chapman</button>
+			</center>
+		</div>
 
-			b.style.left = Math.random() * (z.clientWidth + 100) - 60 - br + "px";
-			b.style.top = Math.random() * (z.clientHeight + 100) - 60 - br + "px";
-			
-			bRect = b.getBoundingClientRect();
-			bx = bRect.left + br;
-			by = bRect.top + br;
-		}
+		<script type="text/javascript">
+			var z = document.createElement("div");
+			document.body.appendChild(z);
+			z.id = "zone";
 
-		function call(){
-			
-			pitchLocation();	
+			var b = document.createElement("div");
+			z.appendChild(b);
+			b.id = "ball";
 
-			if(bx >= calRectLeft && bx <= calRectRight && by >= calRectTop && by <= calRectBottom){
-				
-				if((bx < zRectLeft || bx > zRectRight) && (by < zRectTop || by > zRectBottom) && !(pointCircle(zRectLeft, zRectTop, bx, by, br) || pointCircle(zRectLeft, zRectBottom, bx, by, br) || pointCircle(zRectRight, zRectTop, bx, by, br)|| pointCircle(zRectRight, zRectBottom, bx, by, br))){
-					
-					return false;
+			var tc = document.createElement("div");
+			b.appendChild(tc);
+			tc.id = "timingCircle";
 
+			var zRect = z.getBoundingClientRect();
+
+			var bRect;
+			var br = b.clientWidth / 2;
+			var bx;
+			var by;
+
+			var zRectLeft = zRect.left + 2;
+			var zRectRight = zRect.right - 2;
+			var zRectTop = zRect.top + 2;
+			var zRectBottom = zRect.bottom - 2;
+
+			var calRectLeft = zRectLeft - br;
+			var calRectRight = zRectRight + br;
+			var calRectTop = zRectTop - br;
+			var calRectBottom = zRectBottom + br;
+
+			var initialTCR = 40;
+			var tcr = initialTCR;
+			var tcI;
+			var tcInt;
+			var numberTCI = 50;
+			var isAnimating = false;
+
+			var littleLeagueFbT = 546.1866335;
+			var thirteenUFbT = 543.6323028;
+			var varsityFbT = 490.7572589;
+			var collegeFbT = 436.1901495;
+			var mlbFbT = 413.6682135;
+			var chapmanFbT = 373.5215362;
+
+			var barrelR = 28.06122449 / 2;
+			var timingNum;
+
+			function pointCircle(cx, cy, px, py, r) {
+				let d = Math.sqrt((cx - px) ** 2 + (cy - py) ** 2);
+
+				if (d <= r) {
+					return true;
 				}
-				
-				return true;
 
+				return false;
+			}
+
+			function pitchLocation() {
+				b.style.left = Math.random() * (z.clientWidth + 100) - 60 - br + "px";
+				b.style.top = Math.random() * (z.clientHeight + 100) - 60 - br + "px";
+
+				bRect = b.getBoundingClientRect();
+				bx = bRect.left + br;
+				by = bRect.top + br;
+			}
+
+			function call() {
+				pitchLocation();
+
+				if (
+					bx >= calRectLeft &&
+					bx <= calRectRight &&
+					by >= calRectTop &&
+					by <= calRectBottom
+				) {
+					if (
+						(bx < zRectLeft || bx > zRectRight) &&
+						(by < zRectTop || by > zRectBottom) &&
+						!(
+							pointCircle(zRectLeft, zRectTop, bx, by, br) ||
+							pointCircle(zRectLeft, zRectBottom, bx, by, br) ||
+							pointCircle(zRectRight, zRectTop, bx, by, br) ||
+							pointCircle(zRectRight, zRectBottom, bx, by, br)
+						)
+					) {
+						return false;
+					}
+
+					return true;
 				}
 
-			return false;
-		}
-	
-	 	console.log(call());
+				return false;
+			}
 
-		
-		// var test = document.createElement("div");
-		// z.appendChild(test);
-		
-		// function timingHitQuality(){
+			function timingHitQuality() {
+				document.addEventListener("click", function (e) {
+					var cx = e.clientX;
+					var cy = e.clientY;
 
-		// 	document.addEventListener("click", function (e){
+					var xD = bx - cx;
+					var yD = by - cy;
 
-		// 		var cx = e.clientX;
-		// 		var cy = e.clientY;
-		// 		var d = Math.sqrt((bx-cx)**2 + (by-cy)**2);
+					var d = Math.sqrt((bx - cx) ** 2 + (by - cy) ** 2);
 
-		// 		function timing(){
+					var bLocNum = 0;
+					var power = 0;
 
-		// 			if (tcR ){
-		// 				timingNum = 4
-		// 			} else if(Math.abs(h)){
+					function timing() {
+						if (tcR) {
+							timingNum = 4;
+						} else if (Math.abs()) {
+						}
+					}
 
-		// 			}
-		// 		}
+					function batLocation() {
+						if (cx == bx) {
+							power = p1;
+							bLocNum = b1;
+						} else if (cx < bx) {
+							if (xD < 0.5 * barrelR) {
+								power = p2;
+								bLocNum = -b2;
+							} else if (xD < barrelR) {
+								power = p3;
+								bLocNum = -b3;
+							} else if (xD < 1.5 * barrelR) {
+								power = p4;
+								bLocNum = -b4;
+							} else if (xD < 2 * barrelR) {
+								power = p5;
+								blocNum = -b5;
+							}
+						} else {
+							if (xD < 0.5 * barrelR) {
+								power = p1;
+								bLocNum = b1;
+							} else if (xD < barrelR) {
+								power = p2;
+								bLocNum = b2;
+							} else if (xD < barrelR) {
+								power = p3;
+								bLocNum = b3;
+							} else if (xD < 2 * barrelR) {
+								power = power + p4;
+								blocNum = b4;
+							}
+						}
 
-		// 		if(cx == bx){
+						if (cy == by) {
+							qualityID(5, 4, 3, 2, 1, 0, 1, 2, 3, 4);
+						} else if (cy < by) {
+							if (yD < barrelR / 3) {
+							} else if (yD < (2 * barrelR) / 3) {
+							} else if (yD < barrelR) {
+							} else if (yD < 2 * barrelR) {
+							}
 
-		// 			if(d < barrel/3){
+							qualityID(
+								4,
+								(4 * 4) / 5,
+								(4 * 3) / 5,
+								(4 * 2) / 5,
+								(4 * 1) / 5,
+								0
+							);
+						} else {
+							if (yD < barrelR / 3) {
+							} else if (yD < (2 * barrelR) / 3) {
+							} else if (yD < barrelR) {
+							} else if (yD < 2 * barrelR) {
+							}
 
-		// 			} else if(d < 2*barrel/3){
+							qualityID(
+								6,
+								(6 * 4) / 5,
+								(6 * 3) / 5,
+								(6 * 2) / 5,
+								(6 * 1) / 5,
+								0
+							);
+						}
+					}
+				});
+			}
 
-		// 			} else if(d < barrel){
-
-		// 			}
-		// 		}
-		// 	});
-		// }
-
-		var tcI = 0;
-		var halfTCI = 50;
-		var tcInt;
-
-		function makeTC(){
-
-			tc.style.left = br - tcr + "px";
-			tc.style.top = br - tcr + "px";
-
-			tc.style.width = 2 * tcr + "px";
-			tc.style.height = 2 * tcr + "px";
-
-			if(tcI < halfTCI - 1){
-				
-
-
-				tcr = tcr - initialTCR/(halfTCI - 1);
-				tcI++;
-
-			} else if(tcI == halfTCI - 1){
-				
-				tcr = 0;
-				tcI++;
-
-			} else if(tcI < 2 * (halfTCI - 1)){
-
-				tcr = tcr + initialTCR/(halfTCI - 1);
-				tcI++;
-
-			} else {
-				
-				z.style.borderColor = "black";
-				clearInterval(tcInt);
+			function makeTC() {
 				tcI = 0;
+				tc.style.left = br - tcr + "px";
+				tc.style.top = br - tcr + "px";
 
+				tc.style.width = 2 * tcr + "px";
+				tc.style.height = 2 * tcr + "px";
+
+				if (tcI < numberTCI / 2) {
+					tcr = tcr - initialTCR / numberTCI;
+					tcI++;
+				} else if (tcI == numberTCI / 2) {
+					tcr = 0;
+					tcI++;
+				} else if (tcI > numberTCI) {
+					tcr = tcr + initialTCR / numberTCI;
+					tcI++;
+				} else if (tcI == numberTCI) {
+					tcr = initialTCR;
+				} else {
+					z.style.borderColor = "black";
+					clearInterval(tcInt);
+					tcI = 0;
+				}
 			}
-		}
 
-		function animatePitch(t){
+			function animatePitch(t) {
+				isAnimating = true;
+				call();
+				z.style.borderColor = "transparent";
+				makeTC();
+				tcInt = setInterval(makeTC, t / numberTCI);
+				isAnimating = false;
 
-			z.style.borderColor = "transparent";
-			makeTC();
-			tcInt = setInterval(makeTC, t/(halfTCI - 1));
-			
-			// test.style.backgroundColor = "white";
+				// test.style.backgroundColor = "white";
 
-			
+				// test.style.width = "300px";
+				// test.style.height = "300px";
+				// test.style.backgroundColor = "yellow";
 
-			// test.style.width = "300px";
-			// test.style.height = "300px";
-			// test.style.backgroundColor = "yellow";
-			
-			// setTimeout(function(){test.style.backgroundColor = "white"}, t);
-		}
-		
-		animatePitch(chapmanFB);
-	
-		
+				// setTimeout(function(){test.style.backgroundColor = "white"}, t);
+			}
 
-		
-		
+			function makeButton(lB, lT) {
+				var level = document.getElementById(lB);
 
-		
-		
+				level.addEventListener("click", function () {
+					console.log(isAnimating);
+					if (isAnimating) return;
+					else animatePitch(lT);
+				});
+			}
 
-		// makeTC(100);
-
-		
-		// setTimeout(function(){makeTC(100)}, 3000);
-		// setTimeout(function(){makeTC(10)}, 3000);
-		// setTimeout(function(){makeTC(30)}, 3000);
-		// setTimeout(function(){makeTC(20)}, 3000);
-		// setTimeout(function(){makeTC(10)}, 3000);
-		// setTimeout(function(){makeTC(0)}, 3000);
-
-		// function animatePitch(){
-		// 	for(let i = 100; i > 0; i--){
-		// 			setTimeout( function(){console.log(i)
-		// 				// function (){makeTC(i)}
-
-		// 				, 5000});;
-		// 	}
-		// }
-
-		// animatePitch();
-
-	</script>
-
-
-
-</body>
+			makeButton("littleLeagueFbB", littleLeagueFbT);
+			makeButton("thirteenUFbB", thirteenUFbT);
+			makeButton("varsityFbB", varsityFbT);
+			makeButton("collegeFbB", collegeFbT);
+			makeButton("mlbFbB", mlbFbT);
+			makeButton("chapmanFbB", chapmanFbT);
+		</script>
+	</body>
 </html>

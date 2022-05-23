@@ -1,57 +1,348 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<style type="text/css">
+		<style type="text/css">
+			html,
+			body {
+				scroll-behavior: smooth;
+				margin: 0;
+			}
 
-		html, body{height: 100%; width: 100%; margin: 0;}
+			#eleCar {
+				height: 100vh;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				background-color: rgb(149, 152, 153);
+				z-index: 1;
+			}
 
-		#background{
-			height: 100%;
-			position: relative;
-			padding-left: 76.305970149%;
+			.elevatorLeave {
+				transition: 2s ease-in-out;
+			}
 
-			background-image: url(./images/colorlessElevator.png);
-			background-repeat: no-repeat;
-			background-size: contain;
-			background-position: center;
-		}
+			#doorFrame {
+				z-index: 4;
+				position: fixed;
+				height: calc(575 / 849 * 100vh);
+				width: calc(210 / 849 * 100vh);
+				left: 58%;
+				top: 53.85%;
+				transform: translate(-50%, -50%);
 
-		#door{
-			height: 400px;
-			width: 25%;
-			position: relative;
-			padding-left: 76.305970149%; 
-			right: 7.46735728931%;
-			bottom: 12.3604456767%;
+				border-left: calc(20 / 849 * 100vh) solid rgb(172, 170, 170);
+				border-right: calc(20 / 849 * 100vh) solid rgb(172, 170, 170);
+				border-top: calc(25 / 849 * 100vh) solid rgb(172, 170, 170);
+			}
 
-			background-color: silver;
-		}
-	</style>
+			#door {
+				z-index: 2;
+				position: relative;
+				height: calc(575 / 849 * 100vh);
+				width: calc(210 / 849 * 100vh);
+				background-color: rgb(161, 159, 159);
+			}
 
+			#panel {
+				z-index: 4;
+				height: calc(400 / 849 * 100vh);
+				width: calc(150 / 849 * 100vh);
+				background-color: rgb(177, 139, 59);
+				position: fixed;
+				left: 41.5%;
+				top: 48.5%;
+				transform: translate(-50%, -50%);
+			}
 
+			.button {
+				z-index: 3;
+				height: calc(80 / 849 * 100vh);
+				width: calc(80 / 849 * 100vh);
+				border-radius: 50%;
+				border-color: red;
+				background-color: white;
+				position: fixed;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: calc(15 / 849 * 100vh);
+				line-height: calc(80 / 849 * 100vh);
+				text-align: center;
+			}
 
-</head>
-<body>
-	
+			.button:hover {
+				color: gold;
+				font-size: calc(16.5 / 849 * 100vh);
+			}
 
-	<div id = "background">
-		<div id = "door"></div>
-	</div>
+			#journalButton {
+				top: 15%;
+			}
 
-	<script type="text/javascript">
-		
-		// var b = document.createElement("div");
-		// document.body.appendChild(b);
-		// b.id = "b";
+			#projectsButton {
+				top: 38.33%;
+			}
 
-		// console.log(b.clientHeight);
+			#aboutMeButton {
+				top: 62.67%;
+			}
 
-		// b.style.width = b.clientHeight * 818/1072 + "px";
+			#lobbyButton {
+				top: 85%;
+			}
 
-	</script>
+			#returnEleButton {
+				z-index: 3;
+				height: calc(100 / 849 * 100vh);
+				width: calc(100 / 849 * 100vh);
+				border-radius: 50%;
+				background-color: white;
+				position: fixed;
+				left: 8vh;
+				top: 8vh;
+				transform: translate(-50%, -50%);
+				font-size: calc(16 / 849 * 100vh);
+				line-height: calc(100 / 849 * 100vh);
+				text-align: center;
+			}
 
-</body>
+			#returnEleButton:hover {
+				color: gold;
+				font-size: calc(17.5 / 849 * 100vh);
+			}
+
+			section {
+				height: 100vh;
+				background-color: rgb(149, 152, 153);
+				transform: translateY(0.5vh);
+			}
+
+			.iFrameStyle {
+				width: 100%;
+				height: 100vh;
+				position: relative;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 0;
+			}
+		</style>
+	</head>
+	<body scroll="no" style="overflow: hidden">
+		<img src="./images/colorlessElevator.png" alt="" id="eleCar" />
+
+		<div id="returnEleButton">Call Elevator</div>
+
+		<div id="doorFrame">
+			<div id="door"></div>
+		</div>
+
+		<div id="panel">
+			<div class="button" id="journalButton">Journal</div>
+			<div class="button" id="projectsButton">Projects</div>
+			<div class="button" id="aboutMeButton">About Me</div>
+			<div class="button" id="lobbyButton">Lobby</div>
+		</div>
+
+		<section id="journalFloor">
+			<iframe src="./journal.html" class="iFrameStyle"></iframe>
+		</section>
+		<section id="projectsFloor">
+			<iframe src="./projects.html" class="iFrameStyle"></iframe>
+		</section>
+		<section id="aboutMeFloor">
+			<iframe src="./aboutMe.html" class="iFrameStyle"></iframe>
+		</section>
+
+		<section id="lobbyFloor">
+			<iframe src="./welcome.html" class="iFrameStyle"></iframe>
+		</section>
+
+		<script type="text/javascript">
+			var eleCar = document.getElementById("eleCar");
+			var door = document.getElementById("door");
+			var doorFrame = document.getElementById("doorFrame");
+			var panel = document.getElementById("panel");
+			var aboutMe = document.getElementById("aboutMe");
+			var journal = document.getElementById("journal");
+			var projects = document.getElementById("projects");
+			var lobbyFloor = document.getElementById("lobbyFloor");
+			var aboutMeFloor = document.getElementById("aboutMeFloor");
+			var projectsFloor = document.getElementById("projectsFloor");
+			var journalFloor = document.getElementById("journalFloor");
+			var returnEleButton = document.getElementById("returnEleButton");
+
+			var eleCarRect = eleCar.getBoundingClientRect();
+			var panelRect = panel.getBoundingClientRect();
+			var doorFrameRect = doorFrame.getBoundingClientRect();
+			var eleCarY;
+			var panelY;
+			var doorFrameY;
+			var eleCarHeight = 100;
+			var panelHeight = (400 / 849) * 100;
+			var doorFrameHeight = (600 / 849) * 100;
+
+			var initialEleCarY;
+			var initialPanelY;
+			var initialDoorFrameY;
+
+			var verticalMove;
+			var doorSpeed = 20;
+			var currentDoorSpeed = 0;
+			var totalTimeDoor = 1500;
+			var initialDoorWidth;
+			var isDoorAnimating = false;
+			var t;
+			var x = -1;
+
+			function scalePos() {
+				var currentWindowWidth = (window.innerHeight * 1600) / 849;
+				var changeInWidth = window.innerWidth - currentWindowWidth;
+				doorFrame.style.left =
+					0.58 * currentWindowWidth + changeInWidth / 2 + "px";
+				panel.style.left =
+					0.415 * currentWindowWidth + changeInWidth / 2 + "px";
+			}
+
+			scalePos();
+			initialDoorWidth = door.clientWidth;
+			window.addEventListener("resize", function () {
+				scalePos();
+			});
+
+			function openDoor() {
+				t = totalTimeDoor / door.clientWidth;
+				x = -1;
+
+				function openingDoorStep() {
+					door.style.width = door.clientWidth + x + "px";
+					if (door.clientWidth <= 0) {
+						clearInterval(openingInterval);
+					}
+				}
+
+				var openingInterval = setInterval(openingDoorStep, t);
+			}
+
+			function closeDoor() {
+				x = 1;
+				function closingDoorStep() {
+					door.style.width = door.clientWidth + x + "px";
+					if (door.clientWidth >= initialDoorWidth) {
+						clearInterval(closingInterval);
+					}
+				}
+
+				var closingInterval = setInterval(closingDoorStep, t);
+				setTimeout(function () {
+					door.style.width = (210 / 849) * 100 + "vh";
+				}, totalTimeDoor);
+			}
+
+			function elevatorLeave() {
+				eleCar.classList.add("elevatorLeave");
+				panel.classList.add("elevatorLeave");
+				doorFrame.classList.add("elevatorLeave");
+
+				if (Math.random() < 0.5) {
+					eleCarY = (eleCarRect.top / window.innerHeight) * 100;
+					panelY = (panelRect.top / window.innerHeight) * 100;
+					doorFrameY = (doorFrameRect.top / window.innerHeight) * 100;
+					verticalMove = -100;
+
+					eleCar.style.top = verticalMove + eleCarY - eleCarHeight / 2 + "vh";
+					panel.style.top = verticalMove + panelY - panelHeight / 2 + "vh";
+					doorFrame.style.top =
+						verticalMove + doorFrameY - doorFrameHeight / 2 + "vh";
+				} else {
+					eleCarY = (eleCarRect.bottom / window.innerHeight) * 100;
+					panelY = (panelRect.bottom / window.innerHeight) * 100;
+					doorFrameY = (doorFrameRect.bottom / window.innerHeight) * 100;
+					verticalMove = 100;
+
+					eleCar.style.top = verticalMove + eleCarY + eleCarHeight / 2 + "vh";
+					panel.style.top = verticalMove + panelY + panelHeight / 2 + "vh";
+					doorFrame.style.top =
+						verticalMove + doorFrameY + doorFrameHeight / 2 + "vh";
+				}
+
+				setTimeout(function () {
+					eleCar.classList.remove("elevatorLeave");
+					panel.classList.remove("elevatorLeave");
+					doorFrame.classList.remove("elevatorLeave");
+				}, 2000);
+			}
+
+			function elevatorReturn() {
+				eleCar.classList.add("elevatorLeave");
+				panel.classList.add("elevatorLeave");
+				doorFrame.classList.add("elevatorLeave");
+
+				if (verticalMove == -100) {
+					eleCar.style.top = eleCarY + eleCarHeight / 2 + "vh";
+					panel.style.top = panelY + panelHeight / 2 + "vh";
+					doorFrame.style.top = doorFrameY + doorFrameHeight / 2 + "vh";
+				} else {
+					eleCar.style.top = eleCarY - eleCarHeight / 2 + "vh";
+					panel.style.top = panelY - panelHeight / 2 + "vh";
+					doorFrame.style.top = doorFrameY - doorFrameHeight / 2 + "vh";
+				}
+
+				setTimeout(function () {
+					eleCar.classList.remove("elevatorLeave");
+					panel.classList.remove("elevatorLeave");
+					doorFrame.classList.remove("elevatorLeave");
+				}, 2000);
+			}
+
+			function activateLink(buttonName, floorName) {
+				buttonName.addEventListener("click", function () {
+					if (
+						door.clientWidth >= initialDoorWidth &&
+						isDoorAnimating == false
+					) {
+						console.log(isDoorAnimating);
+
+						isDoorAnimating = true;
+
+						console.log("success");
+
+						floorName.scrollIntoView();
+						setTimeout(openDoor, 1500);
+						setTimeout(closeDoor, totalTimeDoor + 2000);
+						setTimeout(elevatorLeave, totalTimeDoor + 2000 + 2000);
+					} else {
+						console.log(isDoorAnimating);
+						console.log("fail");
+						setTimeout(function () {}, totalTimeDoor + 2000);
+					}
+
+					isDoorAnimating = false;
+				});
+			}
+
+			function initialAnimation() {
+				setTimeout(function () {
+					lobbyFloor.scrollIntoView();
+				}, 1500);
+				setTimeout(openDoor, 1500 + 1500);
+				setTimeout(closeDoor, totalTimeDoor + 2000 + 1500);
+				setTimeout(elevatorLeave, totalTimeDoor + 2000 + 2000 + 1500);
+			}
+
+			initialAnimation();
+
+			setTimeout(function () {
+				activateLink(journalButton, journalFloor);
+				activateLink(projectsButton, projectsFloor);
+				activateLink(aboutMeButton, aboutMeFloor);
+				activateLink(lobbyButton, lobbyFloor);
+				returnEleButton.addEventListener("click", function () {
+					elevatorReturn();
+				});
+			}, totalTimeDoor + 8000);
+		</script>
+	</body>
 </html>

@@ -1,137 +1,381 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	
-	<style type="text/css">
-		*{
-			scroll-behavior: smooth;
-		}
+		<style type="text/css">
+			html,
+			body {
+				scroll-behavior: smooth;
+				margin: 0;
+			}
 
-		#panel{
-			position: fixed;
-			left: 20%;
-			width: 300px;
-			height: 700px;
-			background-color: #cd7f32;
-			border: 10px solid brown;
-			z-index: 1; 
+			#eleCar {
+				height: 100vh;
+				position: fixed;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				background-color: rgb(149, 152, 153);
+				z-index: 1;
+			}
 
-		}
-		.button{
-			width:100px;
-			height: 75px;
-			border-radius: 50%;
-			background-color: rgb(80,80,80);
-			color: white;
-			text-align: center;
-			padding-top: 25px;
-			font-size: 50px;
-		}
+			.elevatorLeave {
+				transition: 2s ease-in-out;
+			}
 
-		section{
-			width: 100%;
-			height: 800px;
-			/*background-color: blue;
-			background-image: url(./images/Layer 1 copy.png);*/
-			position: absolute;
-			z-index: 0;
-			border: dotted;
-		}
+			#doorFrame {
+				z-index: 5;
+				position: fixed;
+				height: calc(575 / 849 * 100vh);
+				width: calc(210 / 849 * 100vh);
+				left: 56.5%;
+				top: 53.85%;
+				transform: translate(-50%, -50%);
 
-		.bookmark{
-			color: white;
-		}
+				border-left: calc(20 / 849 * 100vh) solid rgb(172, 170, 170);
+				border-right: calc(20 / 849 * 100vh) solid rgb(172, 170, 170);
+				border-top: calc(25 / 849 * 100vh) solid rgb(172, 170, 170);
+			}
 
-		.bookmark:hover{
-			color: yellow;
-		}
+			#door {
+				z-index: 3;
+				position: fixed;
+				height: calc(575 / 849 * 100vh);
+				width: calc(210 / 849 * 100vh);
+				background-color: rgb(161, 159, 159);
+			}
 
-		.linkBox{
-			width: 200px;
-			height: 150px;
-			background-color: purple;
-			font-size: 50px;
-		}
-		#aboutMe{
-			top: 0px;
-			background-color: blue;
-		}
+			.doorAnimate {
+				transition: 1.5s ease-in-out;
+			}
 
-		#journal{
-			top: 800px;
-			background-color: white;
-		}
+			#emptyDoor {
+				z-index: 2;
+				position: fixed;
+				top: 0;
+				height: calc(575 / 849 * 100vh);
+				width: calc(210 / 849 * 100vh);
+				background-color: rgb(228, 239, 241);
+			}
 
-		#projects{
-			top: 1600px;
-			background-color: green;
-		}
+			#panel {
+				z-index: 5;
+				height: calc(400 / 849 * 100vh);
+				width: calc(150 / 849 * 100vh);
+				background-color: rgb(177, 139, 59);
+				position: fixed;
+				left: 41.5%;
+				top: 48.5%;
+				transform: translate(-50%, -50%);
+			}
 
-		
+			.button {
+				z-index: 4;
+				height: calc(80 / 849 * 100vh);
+				width: calc(80 / 849 * 100vh);
+				border-radius: 50%;
+				border-style: solid;
+				border-width: 0.3vh;
+				border-color: white;
+				background-color: rgb(148, 148, 148);
+				position: fixed;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				color: white;
+				font-size: calc(15 / 849 * 100vh);
+				line-height: calc(80 / 849 * 100vh);
+				text-align: center;
+			}
 
-	</style>
-</head>
+			.button:hover {
+				color: rgb(255, 232, 103);
+				border-color: rgb(255, 232, 103);
+				font-size: calc(16.5 / 849 * 100vh);
+			}
 
-<body>
-	
-	<div id = "bg">
+			#journalButton {
+				top: 15%;
+			}
 
-	<div id="panel">
-		
-		<center>
-			
-		<div id = "b1" class = "button">
-			<a class="bookmark" href="#aboutMe">1</a>
+			#projectsButton {
+				top: 38.33%;
+			}
+
+			#aboutMeButton {
+				top: 62.67%;
+			}
+
+			#lobbyButton {
+				top: 85%;
+			}
+
+			#returnEleButton {
+				z-index: 2;
+				height: calc(100 / 849 * 100vh);
+				width: calc(100 / 849 * 100vh);
+				border-radius: 50%;
+				border-style: solid;
+				border-width: 0.3vh;
+				border-color: white;
+				background-color: rgb(148, 148, 148);
+				position: fixed;
+				left: 8vh;
+				top: 8vh;
+				transform: translate(-50%, -50%);
+				color: white;
+				font-size: calc(16 / 849 * 100vh);
+				line-height: calc(100 / 849 * 100vh);
+				text-align: center;
+			}
+
+			#returnEleButton:hover {
+				color: rgb(255, 232, 103);
+				border-color: rgb(255, 232, 103);
+				font-size: calc(17.5 / 849 * 100vh);
+			}
+
+			section {
+				height: 100vh;
+				background-color: rgb(149, 152, 153);
+				transform: translateY(0.5vh);
+			}
+
+			.iFrameStyle {
+				width: 100%;
+				height: 100vh;
+				position: relative;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 0;
+			}
+		</style>
+	</head>
+	<body scroll="no" style="overflow: hidden">
+		<img src="./images/colorlessElevator.png" alt="" id="eleCar" />
+
+		<div id="returnEleButton">Call Elevator</div>
+
+		<div id="doorFrame">
+			<div id="door"></div>
+			<div id="emptyDoor"></div>
 		</div>
-		
-		<br>
 
-		<div id = "b2" class = "button">
-			<a class="bookmark" href="#journal">2</a>
-		</div>
-		
-		<br>
-
-		<div id = "b3" class = "button">
-			<a class="bookmark" href="#projects">3</a>
+		<div id="panel">
+			<div class="button" id="journalButton">Journal</div>
+			<div class="button" id="projectsButton">Projects</div>
+			<div class="button" id="aboutMeButton">About Me</div>
+			<div class="button" id="lobbyButton">Lobby</div>
 		</div>
 
-		</center>
+		<section id="journalFloor">
+			<iframe src="./journal.html" class="iFrameStyle"></iframe>
+		</section>
+		<section id="projectsFloor">
+			<iframe src="./projects.html" class="iFrameStyle"></iframe>
+		</section>
+		<section id="aboutMeFloor">
+			<iframe src="./aboutMe.html" class="iFrameStyle"></iframe>
+		</section>
 
-	</div>
+		<section id="lobbyFloor">
+			<iframe src="./welcome.html" class="iFrameStyle"></iframe>
+		</section>
 
-	<section id = journal>
-		<center>
-			<div class = "linkBox">
-			<a href="journal.html">
-				Journal
-			</a>
-		</div>
-		</center>
-	</section>
+		<script type="text/javascript">
+			var eleCar = document.getElementById("eleCar");
+			var door = document.getElementById("door");
+			var doorFrame = document.getElementById("doorFrame");
+			var panel = document.getElementById("panel");
+			var aboutMe = document.getElementById("aboutMe");
+			var journal = document.getElementById("journal");
+			var projects = document.getElementById("projects");
+			var lobbyFloor = document.getElementById("lobbyFloor");
+			var aboutMeFloor = document.getElementById("aboutMeFloor");
+			var projectsFloor = document.getElementById("projectsFloor");
+			var journalFloor = document.getElementById("journalFloor");
+			var returnEleButton = document.getElementById("returnEleButton");
 
-	<section id = projects>
-		<center>
-			<div class = "linkBox">
-			<a href="projects.html">
-				Projects
-			</a>
-		</div>
-	</center>
-	</section>
+			var eleCarRect = eleCar.getBoundingClientRect();
+			var panelRect = panel.getBoundingClientRect();
+			var doorFrameRect = doorFrame.getBoundingClientRect();
+			var eleCarY;
+			var panelY;
+			var doorFrameY;
+			var eleCarHeight = 100;
+			var panelHeight = (400 / 849) * 100;
+			var doorFrameHeight = (600 / 849) * 100;
 
-	<section id = aboutMe>
-		<center>
-			<div class = "linkBox">
-			<a href="aboutMe.html">
-				About Me
-			</a>
-		</div>
-		</center>
-	</section>
+			var initialEleCarY;
+			var initialPanelY;
+			var initialDoorFrameY;
 
-	</div>
+			var verticalMove;
+			var doorSpeed = 20;
+			var currentDoorSpeed = 0;
+			var totalTimeDoor = 1750;
+			var initialDoorWidth;
+			var isDoorAnimating = false;
+			var t;
+			var x = -1;
 
-</body>
+			function scalePos() {
+				var currentWindowWidth = (window.innerHeight * 1600) / 849;
+				var changeInWidth = window.innerWidth - currentWindowWidth;
+				doorFrame.style.left =
+					0.58 * currentWindowWidth + changeInWidth / 2 + "px";
+				panel.style.left =
+					0.415 * currentWindowWidth + changeInWidth / 2 + "px";
+			}
+
+			function openDoor() {
+				// t = totalTimeDoor / door.clientWidth;
+				// x = -1;
+				door.classList.add("doorAnimate");
+				door.style.width = 0 + "vh";
+				// setTimeout(function () {
+				// 	door.classList.remove("doorAnimate");
+				// }, 1500);
+
+				// function openingDoorStep() {
+				// 	door.style.width = door.clientWidth + x + "px";
+				// 	if (door.clientWidth <= 0) {
+				// 		clearInterval(openingInterval);
+				// 	}
+				// }
+
+				// var openingInterval = setInterval(openingDoorStep, t);
+			}
+
+			function closeDoor() {
+				// x = 1;
+				// function closingDoorStep() {
+				// 	door.style.width = door.clientWidth + x + "px";
+				// 	if (door.clientWidth >= initialDoorWidth) {
+				// 		clearInterval(closingInterval);
+				// 	}
+				// }
+
+				// var closingInterval = setInterval(closingDoorStep, t);
+				// setTimeout(function () {
+				// 	door.style.width = (210 / 849) * 100 + "vh";
+				// }, totalTimeDoor);
+				// door.classList.add("doorAnimate");
+				door.style.width = (210 / 849) * 100 + "vh";
+				setTimeout(function () {
+					door.classList.remove("doorAnimate");
+				}, 1500);
+			}
+
+			function elevatorLeave() {
+				eleCar.classList.add("elevatorLeave");
+				panel.classList.add("elevatorLeave");
+				doorFrame.classList.add("elevatorLeave");
+
+				if (Math.random() < 0.5) {
+					eleCarY = (eleCarRect.top / window.innerHeight) * 100;
+					panelY = (panelRect.top / window.innerHeight) * 100;
+					doorFrameY = (doorFrameRect.top / window.innerHeight) * 100;
+					verticalMove = -100;
+
+					eleCar.style.top = verticalMove + eleCarY - eleCarHeight / 2 + "vh";
+					panel.style.top = verticalMove + panelY - panelHeight / 2 + "vh";
+					doorFrame.style.top =
+						verticalMove + doorFrameY - doorFrameHeight / 2 + "vh";
+				} else {
+					eleCarY = (eleCarRect.bottom / window.innerHeight) * 100;
+					panelY = (panelRect.bottom / window.innerHeight) * 100;
+					doorFrameY = (doorFrameRect.bottom / window.innerHeight) * 100;
+					verticalMove = 100;
+
+					eleCar.style.top = verticalMove + eleCarY + eleCarHeight / 2 + "vh";
+					panel.style.top = verticalMove + panelY + panelHeight / 2 + "vh";
+					doorFrame.style.top =
+						verticalMove + doorFrameY + doorFrameHeight / 2 + "vh";
+				}
+
+				setTimeout(function () {
+					eleCar.classList.remove("elevatorLeave");
+					panel.classList.remove("elevatorLeave");
+					doorFrame.classList.remove("elevatorLeave");
+				}, 2000);
+			}
+
+			function elevatorReturn() {
+				eleCar.classList.add("elevatorLeave");
+				panel.classList.add("elevatorLeave");
+				doorFrame.classList.add("elevatorLeave");
+
+				if (verticalMove == -100) {
+					eleCar.style.top = eleCarY + eleCarHeight / 2 + "vh";
+					panel.style.top = panelY + panelHeight / 2 + "vh";
+					doorFrame.style.top = doorFrameY + doorFrameHeight / 2 + "vh";
+				} else {
+					eleCar.style.top = eleCarY - eleCarHeight / 2 + "vh";
+					panel.style.top = panelY - panelHeight / 2 + "vh";
+					doorFrame.style.top = doorFrameY - doorFrameHeight / 2 + "vh";
+				}
+
+				setTimeout(function () {
+					eleCar.classList.remove("elevatorLeave");
+					panel.classList.remove("elevatorLeave");
+					doorFrame.classList.remove("elevatorLeave");
+				}, 2000);
+			}
+
+			function activateLink(buttonName, floorName) {
+				buttonName.addEventListener("click", function () {
+					if (
+						door.clientWidth >= initialDoorWidth &&
+						isDoorAnimating == false
+					) {
+						console.log(isDoorAnimating);
+
+						isDoorAnimating = true;
+
+						console.log("success");
+
+						floorName.scrollIntoView();
+						setTimeout(openDoor, 1500);
+						setTimeout(closeDoor, totalTimeDoor + 2000);
+						setTimeout(elevatorLeave, totalTimeDoor + 2000 + 2000);
+					} else {
+						console.log(isDoorAnimating);
+						console.log("fail");
+						setTimeout(function () {}, totalTimeDoor + 2000);
+					}
+
+					isDoorAnimating = false;
+				});
+			}
+
+			scalePos();
+			initialDoorWidth = door.clientWidth;
+			window.addEventListener("resize", function () {
+				scalePos();
+			});
+
+			function initialAnimation() {
+				setTimeout(function () {
+					lobbyFloor.scrollIntoView();
+				}, 1500);
+				setTimeout(openDoor, 1500 + 1500);
+				setTimeout(closeDoor, totalTimeDoor + 2000 + 1500);
+				setTimeout(elevatorLeave, totalTimeDoor + 2000 + 2000 + 1500);
+			}
+
+			initialAnimation();
+
+			setTimeout(function () {
+				activateLink(journalButton, journalFloor);
+				activateLink(projectsButton, projectsFloor);
+				activateLink(aboutMeButton, aboutMeFloor);
+				activateLink(lobbyButton, lobbyFloor);
+				returnEleButton.addEventListener("click", function () {
+					elevatorReturn();
+				});
+			}, totalTimeDoor + 8000);
+		</script>
+	</body>
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<style>
+			#b1 {
+				font-family: "Times New Roman", Times, serif;
+				font-size: 10px;
+			}
+
+			#b1:hover {
+			}
+
+			#b2 {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 20px;
+			}
+
+			#b2:hover {
+			}
+
+			#b3 {
+				font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+				font-size: 30px;
+			}
+
+			#b3:hover {
+			}
+		</style>
+	</head>
+	<body>
+		<div id="b1">Make me disapeer</div>
+		<div id="b2">Create 100 divs</div>
+		<div id="b3">Song</div>
+
+		<script>
+			var b1 = document.getElementById("b1");
+			var b2 = document.getElementById("b2");
+			var b3 = document.getElementById("b3");
+
+			var colorList = ("red", "orange", "yellow", "green", "blue", "purple");
+
+			while (true) {
+				setTimeout(function () {
+					let i = 0;
+					let j = 1;
+					let k = 2;
+
+					b1.style.backgroundColor = colorList[i];
+					b2.style.backgroundColor = colorList[j];
+					b3.style.backgroundColor = colorList[k];
+
+					i++;
+					j++;
+					k++;
+
+					if (i == colorList.length - 1) {
+						i = 0;
+					} else if (k == colorList.length - 1) {
+						j = 0;
+					} else if (k == colorList.legnth - 1) {
+						k = 0;
+					}
+				}, 3000);
+			}
+		</script>
+	</body>
+</html>

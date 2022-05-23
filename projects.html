@@ -1,113 +1,125 @@
 <!DOCTYPE html>
 <html>
-<head>
-	
-	<style type="text/css">
+	<head>
+		<style type="text/css">
+			html,
+			body {
+				padding: 0;
+				margin: 0;
+			}
 
-		#background{
-			width: 100%;
-			height: 100%;
-			background-color: lightblue;
-			position: fixed;
-			z-index: -1;
+			#background {
+				width: 100%;
+				height: 100%;
+				background-color: rgb(228, 239, 241);
+				position: fixed;
+				z-index: -1;
+			}
 
-		}
+			#title {
+				width: 65vh;
+				height: auto;
+				margin: auto;
+				border-radius: 7%;
+				background-color: rgb(82, 82, 201);
+				font-size: 12vh;
+				color: white;
+				text-align: center;
+			}
 
-		#title{
-			width: 600px;
-			height: auto;
-			margin: auto;
-			background-color: darkblue;
-			font-size: 90px;
-			color: white;
-			text-align: center;
-			z-index: 1;
-		}
+			.entryBox {
+				width: 97%;
+				height: auto;
+				border-style: ridge;
+				border-width: 0.75vh;
+				border-color: rgb(194, 161, 161);
+				padding: 1vh;
+				background-color: rgb(201, 193, 193);
+				font-size: 2.5vh;
+				text-align: center;
+				position: relative;
+				left: 50%;
+				transform: translateX(-50%);
+			}
 
-		.entryBox{
-			width: 100%;
-			height: auto;
-			border-style: ridge;
-			border-width: 5px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			background-color: rgb(177, 156, 217);
-			font-size: 20px;
-			text-align: center;
-			z-index: 0;
-		}
+			.dateBox {
+				width: 13.5vh;
+				height: auto;
+				margin: auto;
+				background-color: rgb(218, 210, 223);
+				color: rgb(136, 77, 184);
+				font-size: 3vh;
+				text-align: center;
+			}
 
-		.dateBox{
-			width: 100px;
-			height: auto;
-			margin: auto;
-			background-color: rgb(200, 180, 217);
-			text-align: center;
-			z-index: 2; 
-		}
+			.break {
+				height: 1.25vh;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function entry(d, n, fN) {
+				var eB = document.createElement("div");
+				var dB = document.createElement("div");
+				var eBr = document.createElement("div");
+				var dBr = document.createElement("div");
+				var l = document.createElement("a");
 
-		.break{
-			height: 10px;
-		}
-		
-		html,body {padding:0; margin:0;};
+				eB.classList.add("entryBox");
+				dB.classList.add("dateBox");
+				eBr.classList.add("break");
+				dBr.classList.add("break");
 
-	</style>
+				dB.innerText = d;
+				l.innerHTML = n.link(fN);
 
-</head>
-<body>
-
-	<script type="text/javascript">
-		
-		function entry(d, n, fN){	
-			
-			var eB = document.createElement("div");
-			var dB = document.createElement("div");
-			var eBr = document.createElement("div");
-			var dBr = document.createElement("div");
-			var l = document.createElement("a")
-
-			eB.classList.add("entryBox");
-			dB.classList.add("dateBox");
-			eBr.classList.add("break");
-			dBr.classList.add("break");
-			
-			dB.innerText = d;
-			l.innerHTML = n.link(fN);
-
-			document.body.appendChild(eB);
-			document.body.appendChild(eBr);
-			eB.appendChild(dB);
-			eB.appendChild(dBr);
-			eB.appendChild(l);
-		}
-
-	</script>
-
-
-	<div id = "background"></div>
-
-	<div id = "title">Projects</div>
-		
-	<br>
-	
-	<script type="text/javascript">
-
-		entry("2/13/22", "Football p5.js", "https://editor.p5js.org/c25mg2/sketches/syAaPXIwU");
-
-		entry("2/6/22", "Data Representation/Baseball Game V1", "pitchSimulatorV1.html");
-
-		entry("12/6/21", "How it Works", "https://docs.google.com/presentation/d/1_X07pFre4baPVMZZo7m-bbQ6ivzVZ2dDaV4ZaLjCQCY/edit?usp=sharing");
-
-		entry("11/22/21", "Cookie to Dinosaur", "cookieDinosaur.html");
-
-		entry("11/4/21", "Fizz Buzz", "fizzBuzz.html");
-
-		entry("10/31/21", "Function Practice", "functionPractice.html")
-
-		entry("10/24/21", "Animation Practice", "animationPractice.html")
-
+				document.body.appendChild(eB);
+				document.body.appendChild(eBr);
+				eB.appendChild(dB);
+				eB.appendChild(dBr);
+				eB.appendChild(l);
+			}
 		</script>
-		
-</body>
+
+		<div id="background"></div>
+
+		<div id="title">Projects</div>
+
+		<br />
+		<br />
+		<br />
+
+		<script type="text/javascript">
+			entry("4/20/22", "Baseball Simulator v2", "pitchSimulatorV2.html");
+
+			entry("4/15/22", "Clicker Game", "clickerGame.html");
+
+			entry(
+				"2/13/22",
+				"Football p5.js",
+				"https://editor.p5js.org/c25mg2/sketches/syAaPXIwU"
+			);
+
+			entry(
+				"2/6/22",
+				"Data Representation/Baseball Game V1",
+				"pitchSimulatorV1.html"
+			);
+
+			entry(
+				"12/6/21",
+				"How it Works",
+				"https://docs.google.com/presentation/d/1_X07pFre4baPVMZZo7m-bbQ6ivzVZ2dDaV4ZaLjCQCY/edit?usp=sharing"
+			);
+
+			entry("11/22/21", "Cookie to Dinosaur", "cookieDinosaur.html");
+
+			entry("11/4/21", "Fizz Buzz", "fizzBuzz.html");
+
+			entry("10/31/21", "Function Practice", "functionPractice.html");
+
+			entry("10/24/21", "Animation Practice", "animationPractice.html");
+		</script>
+	</body>
 </html>
