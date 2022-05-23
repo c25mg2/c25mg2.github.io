@@ -30,13 +30,13 @@
         top: 228.1632653px;*/
 			}
 
-			#timingCircle {
+			/* #timingCircle {
 				border-radius: 50%;
 				background-color: grey;
 				position: relative;
 				opacity: 0.33;
 				transform: translate(-50%, -50%);
-			}
+			} */
 
 			.button {
 				width: 100px;
@@ -143,8 +143,8 @@
 			}
 
 			function createRandEndPos() {
-				endPos[0] = Math.random() * (zoneWidth + 80) - 40;
-				endPos[1] = Math.random() * (zoneHeight + 80) - 40;
+				endPos[0] = Math.random() * (zoneWidth + 40) - 20;
+				endPos[1] = Math.random() * (zoneHeight + 40) - 20;
 			}
 
 			function resetBall() {
@@ -198,7 +198,7 @@
 				setBallPos(currentPos[0], currentPos[1]);
 				timingCircle.style.left = endPos[0] + "px";
 				timingCircle.style.top = endPos[1] + "px";
-				
+
 				console.log("endPOS", endPos[0], endPos[1]);
 				console.log("tC Coor", timingCircle.style.left, timingCircle.style.top);
 				let i = 0;
